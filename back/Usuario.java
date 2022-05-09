@@ -3,18 +3,23 @@ public class Usuario {
     private int idUsuario;
     private String nome;
     private String email;
-    private int telefone;
+    private String telefone;
     private String cargo;
     private String senha;
 
 
-    public void Usuario(int idUsuario, String nome, String email, int telefone, String cargo, String senha) {
+
+    public Usuario(int idUsuario, String nome, String email, String telefone, String cargo, String senha) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.cargo = cargo;
         this.senha = senha;
+    }
+
+    public Usuario(String nome) {
+        this.nome = nome;
     }
 
     public String getNome() {
@@ -29,11 +34,11 @@ public class Usuario {
         return idUsuario;
     }
 
-    public int setIdUsuario(int idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -61,19 +66,19 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public String cadastrarUsuario(String nome, String email, int telefone, String cargo, String senha) {
-
+    public String cadastrarUsuario(String nome, String email, String telefone, String cargo, String senha) {
+        return "Sucesso!";
     }
 
     public String alterarUsuario() {
-
+        return " ";
     }
 
     public String deletarUsuario() {
-
+        return " ";
     }
 }
