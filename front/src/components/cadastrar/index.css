@@ -1,0 +1,127 @@
+body{
+    max-width: 100%;
+    min-width: 5%;
+    max-height: 100%;
+    min-height: 5%;
+    text-align: center;
+    align-items: center;
+    font-family: Domine;
+    background-color: #FBF5F3;
+    letter-spacing: 3px;
+}
+
+html {
+    font-size: 50%;
+}
+
+.header {
+    margin-top: 4rem;
+}
+
+.texto-introdutorio-cadastrar {
+    margin-top: 5rem;
+    font-size: 2.5rem;
+}
+
+.dados-cadastrar .grid-dados{
+    padding-top: 20rem;
+    padding-left: 15vw;
+
+}
+
+.dados-cadastrar .grid-dados .field-cadastro{
+    margin-right: 10vw;
+    margin-bottom: 5%;
+}
+
+.grid-dados .field-cadastro {
+    width: 30vw;
+}
+
+.field-cadastro label{
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.field-cadastro #cargo MenuItem {
+    font-size: 2.3rem;
+}
+
+#cargo {
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+
+.dados-cadastrar .grid-dados .field-cadastro #nome{
+    padding-bottom: 5.0rem;
+}
+
+.dados-cadastrar .grid-dados .field-cadastro #sobrenome{
+    padding-bottom: 5.0rem;
+}
+
+.dados-cadastrar .grid-dados .field-cadastro #email{
+    padding-bottom: 5.0rem;
+}
+
+.dados-cadastrar .grid-dados .field-cadastro #telefone{
+    padding-bottom: 5.0rem;
+}
+
+.dados-cadastrar .grid-dados .field-cadastro #cargo{
+    padding-bottom: 5.0rem;
+}
+.dados-cadastrar .grid-dados .field-cadastro #senha{
+    padding-bottom: 5.0rem;
+}
+
+.dados-cadastrar .grid-dados .field-cadastro-separado {
+    margin-left: 20vw;
+    margin-bottom: 2%;
+}
+
+.grid-dados .field-cadastro-separado {
+    width: 30vw;
+}
+
+.field-cadastro-separado label{
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.dados-cadastrar .grid-dados .field-cadastro-separado #senha-novamente{
+    padding-bottom: 5.0rem;
+}
+
+#senha {
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+#senha-novamente {
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+.button-cadastrar{
+    padding: 8.0rem;
+}
+
+.button-cadastrar .config-button {
+    border-radius: 100px;
+    border: 3px solid #000;
+    background-color: #C879FF;
+    color: rgba(255, 255, 255);
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    padding: 2.0rem;
+}
+
+.button-cadastrar .config-button:hover {
+    background-color: rgba(225, 138, 212, 2);
+}

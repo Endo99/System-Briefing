@@ -1,0 +1,112 @@
+body{
+    max-width: 100%;
+    min-width: 5%;
+    max-height: 100%;
+    min-height: 5%;
+    text-align: center;
+    align-items: center;
+    font-family: Domine;
+    background-color: #FBF5F3;
+    letter-spacing: 3px;
+}
+
+html {
+    font-size: 50%;
+}
+
+header {
+    margin-top: 5rem;
+}
+
+h4 {
+    font-size: 3.0rem;
+    font-weight: bold;
+}
+
+h4, p {
+    margin-top: 0;
+    margin-bottom: 0.9rem;
+    font-size: 2.0rem;
+    font-weight: bold;
+}
+
+#email-login{
+    width: 22vw;
+    font-size: 2.6rem;
+}
+
+.field label{
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+}
+
+#senha-login{
+    width: 20vw;
+    font-size: 2.6rem;
+}
+
+.field label{
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.dados-login {
+    padding-top: 2.0rem;
+}
+
+.button-logar{
+    padding: 5.0rem;
+    padding-bottom: 2rem;
+}
+
+.button-logar .config-button {
+    border-radius: 100px;
+    background-color: #C879FF;
+    color: rgba(255, 255, 255);
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+}
+
+.button-logar .config-button:hover {
+    background-color: rgba(225, 138, 212, 2);
+}
+
+.loading{
+    background-color: #000;
+}
+
+#esqueceu-senha{
+    font-size: 1.8rem;
+    color: #00B4D8;
+    padding-left: 20%;
+    margin-top: 0.9%;
+}
+
+#esqueceu-senha .link-esqueceu{
+    font-size: 1.8rem;
+    color: #00B4D8;
+    margin: 0;
+    letter-spacing: 3px;
+}
+
+#link-cadastrar{
+    font-size: 1.8rem;
+    color: #000;
+}
+
+#link-cadastrar p{
+    font-size: 2.0rem;
+    color: #000;
+}
+
+#link-cadastrar .link-cadastro{
+    font-size: 2.0rem;
+    color: #00B4D8;
+    padding-left: 0.2%;
+    letter-spacing: 3px;
+}

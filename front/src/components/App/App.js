@@ -1,5 +1,6 @@
 import React from "react";
-import Login from "../Login/";
+import Login from "../login/";
+import Cadastrar from "../cadastrar/";
 
 const App = () => {
   return (
