@@ -15,7 +15,17 @@ html {
 }
 
 .header {
-    margin-top: 4rem;
+    margin-top: 0;
+}
+
+.header .header-button-voltar{
+    text-align: left;
+    margin-left: 15vw;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    
 }
 
 .texto-introdutorio-cadastrar {
@@ -45,13 +55,39 @@ html {
     text-transform: uppercase;
 }
 
-.field-cadastro #cargo MenuItem {
+#nome {
     font-size: 2.3rem;
+    padding: 0 auto;   
+}
+
+#sobrenome {
+    font-size: 2.3rem;
+}
+
+#email {
+    font-size: 2.3rem;
+}
+
+#telefone {
+    font-size: 2.3rem;
+}
+
+#senha {
+    font-size: 2.3rem;
+}
+
+#senhaNovamente {
+    font-size: 2.3rem;
+    transition: all 2.5s;
 }
 
 #cargo {
     font-size: 2.3rem;
     text-align: center;
+}
+
+.menu-cargo{
+    font-size: 2.3rem;
 }
 
 
@@ -94,18 +130,15 @@ html {
     text-transform: uppercase;
 }
 
+#senha {
+    font-size: 2.3rem;
+}
 .dados-cadastrar .grid-dados .field-cadastro-separado #senha-novamente{
     padding-bottom: 5.0rem;
 }
 
-#senha {
+#senhaNovamente {
     font-size: 2.3rem;
-    text-align: center;
-}
-
-#senha-novamente {
-    font-size: 2.3rem;
-    text-align: center;
 }
 
 .button-cadastrar{

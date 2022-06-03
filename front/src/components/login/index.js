@@ -20,6 +20,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 
 import { NavLink } from "react-router-dom";
+import { SendSharp } from "@mui/icons-material";
 
 const Login = (props) => {
 
@@ -32,7 +33,9 @@ const Login = (props) => {
         bar_top_QA: '#800F2F',
     }]
 
-    const [values, setValues] = React.useState({
+    const [email, setEmail] = React.useState('');
+
+    const [senha, setSenha] = React.useState({
       amount: '',
       password: '',
       weight: '',
@@ -40,15 +43,14 @@ const Login = (props) => {
       showPassword: false,
     });
   
-  
     const handleChange = (prop) => (event) => {
-      setValues({ ...values, [prop]: event.target.value });
+      setSenha({ ...senha, [prop]: event.target.value });
     };
   
     const handleClickShowPassword = () => {
-      setValues({
-        ...values,
-        showPassword: !values.showPassword,
+      setSenha({
+        ...senha,
+        showPassword: !senha.showPassword,
       });
     };
   
@@ -62,7 +64,10 @@ const Login = (props) => {
       '|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
     );
   
-    
+    const dataLogin = () => {
+      console.log(email);
+      console.log(senha);
+    }
 
     return (
       <div>
@@ -81,6 +86,8 @@ const Login = (props) => {
                   label='e-mail'
                   className="field"
                   type='text'
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   InputProps={{
                     
                     startAdornment: (
@@ -88,7 +95,6 @@ const Login = (props) => {
                         <MailOutlineIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                       </InputAdornment>
                     ),
-                    shrink: true,
                   }}
                   variant="outlined"
                   />
@@ -98,9 +104,8 @@ const Login = (props) => {
                     id="senha-login"
                     label='senha'
                     className="field"
-                    
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
+                    type={senha.showPassword ? 'text' : 'password'}
+                    value={senha.password}
                     onChange={handleChange('password')}
 
                     InputProps={{
@@ -109,18 +114,17 @@ const Login = (props) => {
                           <KeyIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                         </InputAdornment>
                       ),
-                      shrink: true,
 
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton classname='visibilidade'
+                          <IconButton className='visibilidade'
                           sx={{width: 35, height: 35, color: '#C879FF'}}
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                           >
-                            {values.showPassword ? <VisibilityOff sx={{width: 35, height: 35, color: '#C879FF'}} /> : <Visibility sx={{width: 35, height: 35, color: '#C879FF'}}/>}
+                            {senha.showPassword ? <VisibilityOff sx={{width: 35, height: 35, color: '#C879FF'}} /> : <Visibility sx={{width: 35, height: 35, color: '#C879FF'}}/>}
                           </IconButton>
                         </InputAdornment>
                       ),
@@ -146,9 +150,7 @@ const Login = (props) => {
                 <Button
                 className="config-button"
                 startIcon={<LoginIcon sx={{width: 35, height: 35, color: '#fff'}}/>}
-                onClick={() => { /* Usar state no onclick do config-button e no do loadingbutton */
-                    <Cadastrar />
-                }}
+                onClick={dataLogin}
                 variant='outlined'>
                   Enviar
                 </Button>

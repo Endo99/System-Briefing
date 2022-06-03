@@ -1,5 +1,7 @@
 import React from "react";
 import './index.css';
+import Login from "../login/";
+import axios from "axios";
 
 import {InputAdornment, TextField, Grid, MenuItem, Button} from '@mui/material/';
 
@@ -14,10 +16,30 @@ import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Cadastrar = (props) => {
 
-    const currencies = [
+  const postData = () => {
+    console.log(nome)
+    console.log(sobrenome)
+    console.log(email)
+    console.log(telefone)
+    console.log(cargo)
+    console.log(senha)
+    console.log(senhaNovamente)
+}
+  const cadastrar = () => {
+    <div>
+      <h2>Valor</h2>
+    </div>
+  }
+
+    const cargos = [
+    {
+        value: 'Adminstrador',
+        label: 'Adminstrador',
+    },
     {
         value: 'Project Owner',
         label: 'Project Owner',
@@ -32,16 +54,13 @@ const Cadastrar = (props) => {
     },
     ];
 
-    const [currency, setCurrency] = React.useState({
-    });
+    const [nome, setNome] = React.useState('');
+    const [sobrenome, setSobrenome] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [telefone, setTelefone] = React.useState(0);
+    const [cargo, setCargo] = React.useState('');
 
-    const handleChange = (event) => {
-        setCurrency(event.target.value);
-    };
-
-    const [state, setstate] = React.useState(false)
-
-    const [values, setValues] = React.useState({
+    const [senha, setSenha] = React.useState({
       amount: '',
       password: '',
       weight: '',
@@ -49,28 +68,58 @@ const Cadastrar = (props) => {
       showPassword: false,
     });
 
-    const handleChangePassword = (prop) => (event) => {
-        setValues({ ...values, [prop]: event.target.value });
+    const [senhaNovamente, setSenhaNovamente] = React.useState({
+      amount: '',
+      password: '',
+      weight: '',
+      weightRange: '',
+      showPassword: false,
+    });
+
+    const handleChangePasswordSenha = (prop) => (event) => {
+        setSenha({ ...senha, [prop]: event.target.value });
       };
     
-    const handleClickShowPassword = () => {
-        setValues({
-          ...values,
-          showPassword: !values.showPassword,
+    const handleClickShowPasswordSenha = () => {
+        setSenha({
+          ...senha,
+          showPassword: !senha.showPassword,
         });
       };
 
-      
-
-    const handleMouseDownPassword = (event) => {
+    const handleMouseDownPasswordSenha = (event) => {
         event.preventDefault();
       };
+
+      const handleChangePasswordSenhaNovamente = (prop) => (event) => {
+        setSenhaNovamente({ ...senhaNovamente, [prop]: event.target.value });
+      };
+    
+    const handleClickShowPasswordSenhaNovamente = () => {
+        setSenhaNovamente({
+          ...senhaNovamente,
+          showPassword: !senhaNovamente.showPassword,
+        });
+      };
+
+    const handleMouseDownPasswordSenhaNovamente = (event) => {
+        event.preventDefault();
+      };
+
+    
     return (
         <div>
             <div className="header-cadastrar">
             <header className='header'>
-                <AccountCircleOutlinedIcon className="avatar-cadastro" sx={{width: 70, height: 70, color: '#C879FF'}}>
-                </AccountCircleOutlinedIcon>
+                <div className="header-button-voltar">
+                  <IconButton className="voltar-button">
+                    <ArrowBackIcon className="voltar-cadastro" sx={{width: 70, height: 70, color: '#C879FF'}}></ArrowBackIcon>
+                  </IconButton>
+                </div>
+                <div className="avatar">
+                  <AccountCircleOutlinedIcon className="avatar-cadastro" sx={{width: 70, height: 70, color: '#C879FF'}}>
+                  </AccountCircleOutlinedIcon>
+                </div>
             </header>
             <h4 className="texto-introdutorio-cadastrar"> Olá! Por favor, insira os seus dados abaixo:</h4>
             </div>
@@ -78,10 +127,12 @@ const Cadastrar = (props) => {
             <div className='dados-cadastrar'>
                 <Grid className="grid-dados" container spacing={15} item lg={25} columnSpacing={{ xs: 0, sm: 0, md: 1 }}>
                 <TextField
+                  required
                   id="nome"
                   label='nome'
                   className="field-cadastro"
                   type='text'
+                  onChange={(e) => {setNome(e.target.value)}}
                   InputProps={{
                     
                     startAdornment: (
@@ -89,16 +140,17 @@ const Cadastrar = (props) => {
                         <AccountBoxIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                       </InputAdornment>
                     ),
-                    shrink: true,
                   }}
                   variant="outlined"
                   />
 
                 <TextField
+                  required
                   id="sobrenome"
                   label='sobrenome'
                   className="field-cadastro"
                   type='text'
+                  onChange={(e) => setSobrenome(e.target.value)}
                   InputProps={{
                     
                     startAdornment: (
@@ -106,16 +158,17 @@ const Cadastrar = (props) => {
                         <AccountBoxIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                       </InputAdornment>
                     ),
-                    shrink: true,
                   }}
                   variant="outlined"
                   />
 
                 <TextField
+                  required
                   id="email"
                   label='e-mail'
                   className="field-cadastro"
                   type='text'
+                  onChange={(e) => setEmail(e.target.value)}
                   InputProps={{
                     
                     startAdornment: (
@@ -123,16 +176,18 @@ const Cadastrar = (props) => {
                         <MailOutlineIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                       </InputAdornment>
                     ),
-                    shrink: true,
+                    shrink: "true",
                   }}
                   variant="outlined"
                   />
 
                 <TextField
+                  required
                   id="telefone"
                   label='telefone'
                   className="field-cadastro"
                   type='text'
+                  onChange={(e) => setTelefone(e.target.value)}
                   InputProps={{
                     
                     startAdornment: (
@@ -140,19 +195,19 @@ const Cadastrar = (props) => {
                         <SmartphoneIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                       </InputAdornment>
                     ),
-                    shrink: true,
                   }}
                   variant="outlined"
                   />
 
                 <TextField
+                  required
                   id="cargo"
                   select
                   label='cargo'
                   className="field-cadastro"
                   type='text'
-                  value={currency}
-                  onChange={handleChange}
+                  value={cargo}
+                  onChange={(e) => setCargo(e.target.value)}
                   
                   InputProps={{
                     
@@ -161,26 +216,24 @@ const Cadastrar = (props) => {
                         <BadgeIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                       </InputAdornment>
                     ),
-                    shrink: true,
                   }}
                   variant="outlined"
-
-                  
                   >
-                  {currencies.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
+                  {cargos.map((option) => (
+                        <MenuItem className="menu-cargo" key={option.value} value={option.value} >
                         {option.label}
                         </MenuItem>
                         ))}
                   </TextField>
 
                 <TextField
+                  required
                   id="senha"
                   label='senha'
                   className="field-cadastro"
-                  type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChangePassword('password')}
+                  type={senha.showPassword ? 'text' : 'password'}
+                  value={senha.password}
+                    onChange={handleChangePasswordSenha('password')}
 
                     InputProps={{
                       startAdornment: (
@@ -188,18 +241,17 @@ const Cadastrar = (props) => {
                           <KeyIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                         </InputAdornment>
                       ),
-                      shrink: true,
 
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton classname='visibilidade'
+                          <IconButton className='visibilidade'
                           sx={{width: 35, height: 35, color: '#C879FF'}}
                             aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            onClick={handleClickShowPasswordSenha}
+                            onMouseDown={handleMouseDownPasswordSenha}
                             edge="end"
                           >
-                            {values.showPassword ? <VisibilityOff sx={{width: 35, height: 35, color: '#C879FF'}} /> : <Visibility sx={{width: 35, height: 35, color: '#C879FF'}}/>}
+                            {senha.showPassword ? <VisibilityOff sx={{width: 35, height: 35, color: '#C879FF'}} /> : <Visibility sx={{width: 35, height: 35, color: '#C879FF'}}/>}
                           </IconButton>
                         </InputAdornment>
                       ),
@@ -208,12 +260,13 @@ const Cadastrar = (props) => {
                   />
 
                 <TextField
-                  id="senha-novamente"
+                  required
+                  id="senhaNovamente"
                   label='senha novamente'
                   className="field-cadastro-separado"
-                  type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChangePassword('password')}
+                  type={senhaNovamente.showPassword ? 'text' : 'password'}
+                    value={senhaNovamente.password}
+                    onChange={handleChangePasswordSenhaNovamente('password')}
 
                     InputProps={{
                       startAdornment: (
@@ -221,18 +274,17 @@ const Cadastrar = (props) => {
                           <KeyIcon sx={{width: 35, height: 35, color: '#C879FF'}}/>
                         </InputAdornment>
                       ),
-                      shrink: true,
 
                       endAdornment: (
                         <InputAdornment position="end">
-                          <IconButton classname='visibilidade'
+                          <IconButton className='visibilidade'
                           sx={{width: 35, height: 35, color: '#C879FF'}}
                             aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            onClick={handleClickShowPasswordSenhaNovamente}
+                            onMouseDown={handleMouseDownPasswordSenhaNovamente}
                             edge="end"
                           >
-                            {values.showPassword ? <VisibilityOff sx={{width: 35, height: 35, color: '#C879FF'}} /> : <Visibility sx={{width: 35, height: 35, color: '#C879FF'}}/>}
+                            {senhaNovamente.showPassword ? <VisibilityOff sx={{width: 35, height: 35, color: '#C879FF'}} /> : <Visibility sx={{width: 35, height: 35, color: '#C879FF'}}/>}
                           </IconButton>
                         </InputAdornment>
                       ),
@@ -244,9 +296,8 @@ const Cadastrar = (props) => {
                 <div className="button-cadastrar">
                 <Button
                 className="config-button"
-                onClick={() => { /* Usar state no onclick do config-button e no do loadingbutton */
-                    
-                }}
+                type="submit"
+                onClick={postData}
                 variant='outlined'>
                   Cadastrar
                 </Button>
