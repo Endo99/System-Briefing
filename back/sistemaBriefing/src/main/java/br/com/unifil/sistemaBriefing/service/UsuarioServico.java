@@ -2,9 +2,12 @@ package br.com.unifil.sistemaBriefing.service;
 
 import br.com.unifil.sistemaBriefing.models.Cargos;
 import br.com.unifil.sistemaBriefing.models.Usuario;
+import br.com.unifil.sistemaBriefing.repository.UsuarioRepositorio;
+import br.com.unifil.sistemaBriefing.request.UsuarioPostResquestBody;
+import br.com.unifil.sistemaBriefing.request.UsuarioPutResquestBody;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
@@ -12,29 +15,49 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioServico {
 
-    private static List<Usuario> usuarios;
-
-    static {
-        usuarios = new ArrayList<>(List.of(new Usuario(1L,"Wellington", "Endo", "wellington@gmail.com", "43991837072","Desenvolvedor", "W_je99", "W_je99")));
-    }
+    private final UsuarioRepositorio usuarioRepositorio;
 
     public List<Usuario> listarTodos() {
-        return usuarios;
+        return usuarioRepositorio.findAll();
     }
 
-    public Usuario buscarPorId(long idUsuario) {
-        return usuarios.stream()
-                .filter(cargos -> cargos.getIdUsuario() == idUsuario)
-                .findFirst()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado"));
+    public Usuario buscarPorIdIUsuario(long idUsuario) {
+        return usuarioRepositorio.findById(idUsuario)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuario não encontrado"));
     }
 
-    public Usuario cadastrarUsuario(Usuario usario)
+    public Usuario cadastrarUsuario(UsuarioPostResquestBody usuarioPostResquestBody)
     {
-        usario.setIdUsuario(ThreadLocalRandom.current().nextLong(3, 10000));
-        usuarios.add(usario);
-        return usario;
+        return usuarioRepositorio.save(Usuario.builder().nome(usuarioPostResquestBody.getNome())
+                        .sobrenome(usuarioPostResquestBody.getSobrenome())
+                        .email(usuarioPostResquestBody.getEmail())
+                        .cargo(usuarioPostResquestBody.getCargo())
+                        .telefone(usuarioPostResquestBody.getTelefone())
+                        .senha(usuarioPostResquestBody.getSenha())
+                        .senhaNovamente(usuarioPostResquestBody.getSenhaNovamente())
+                .build());
+    }
+
+    public void deletarUsuario(long id) {
+        usuarioRepositorio.delete(buscarPorIdIUsuario(id));
+    }
+
+    public void alterarUsuario(UsuarioPutResquestBody usuarioPutResquestBody) {
+        Usuario salvarUsuario = buscarPorIdIUsuario(usuarioPutResquestBody.getIdUsuario());
+        Usuario usuario = Usuario.builder()
+                .idUsuario(salvarUsuario.getIdUsuario())
+                .nome(salvarUsuario.getNome())
+                .sobrenome(salvarUsuario.getSobrenome())
+                .email(salvarUsuario.getEmail())
+                .cargo(salvarUsuario.getCargo())
+                .telefone(usuarioPutResquestBody.getTelefone())
+                .senha(salvarUsuario.getSenha())
+                .senhaNovamente(salvarUsuario.getSenhaNovamente())
+                .build();
+
+        usuarioRepositorio.save(usuario);
     }
 }

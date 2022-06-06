@@ -2,6 +2,7 @@ import React from "react";
 import './index.css';
 import Login from "../login/";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {InputAdornment, TextField, Grid, MenuItem, Button} from '@mui/material/';
 
@@ -35,6 +36,8 @@ const Cadastrar = (props) => {
     </div>
   }
 
+  const navigate = useNavigate()
+
     const cargos = [
     {
         value: 'Adminstrador',
@@ -54,11 +57,11 @@ const Cadastrar = (props) => {
     },
     ];
 
-    const [nome, setNome] = React.useState('');
-    const [sobrenome, setSobrenome] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [telefone, setTelefone] = React.useState(0);
-    const [cargo, setCargo] = React.useState('');
+    let [nome, setNome] = React.useState('');
+    let [sobrenome, setSobrenome] = React.useState('');
+    let [email, setEmail] = React.useState('');
+    let [telefone, setTelefone] = React.useState(0);
+    let [cargo, setCargo] = React.useState('');
 
     const [senha, setSenha] = React.useState({
       amount: '',
@@ -111,11 +114,6 @@ const Cadastrar = (props) => {
         <div>
             <div className="header-cadastrar">
             <header className='header'>
-                <div className="header-button-voltar">
-                  <IconButton className="voltar-button">
-                    <ArrowBackIcon className="voltar-cadastro" sx={{width: 70, height: 70, color: '#C879FF'}}></ArrowBackIcon>
-                  </IconButton>
-                </div>
                 <div className="avatar">
                   <AccountCircleOutlinedIcon className="avatar-cadastro" sx={{width: 70, height: 70, color: '#C879FF'}}>
                   </AccountCircleOutlinedIcon>

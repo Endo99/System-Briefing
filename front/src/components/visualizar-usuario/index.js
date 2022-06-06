@@ -1,12 +1,11 @@
 import React from "react";
 
-const MainPage = (props) => {
-
+const VisualizarUsuario = (props) => {
     return (
         <div>
-            
+
         </div>
     )
 }
 
-export default MainPage;
+export default VisualizarUsuario;

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UsuarioRepositorio {
+public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
 
-    List<Usuario> listarTodos();
 }

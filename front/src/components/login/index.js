@@ -1,6 +1,7 @@
 import React, {useState, setState} from "react";
 import './index.css';
 import Cadastrar from "../cadastrar/";
+import { useNavigate } from "react-router-dom";
 
 
 import {TextField, Typography, Grid, Button, Input, Link} from "@mui/material/";
@@ -23,6 +24,8 @@ import { NavLink } from "react-router-dom";
 import { SendSharp } from "@mui/icons-material";
 
 const Login = (props) => {
+
+  const navigate = useNavigate();
 
     const color = [{
         background: '#FBF5F3',
@@ -139,9 +142,7 @@ const Login = (props) => {
                   component='button'
                   variant='body2'
                   underline='hover'
-                  onClick={() => {
-
-                  }}>
+                  onClick={() => navigate("/esqueceu")}>
                     Esqueceu a senha?
                   </Link>
               </div>
@@ -163,9 +164,7 @@ const Login = (props) => {
                   component='button'
                   variant='body2'
                   underline='hover'
-                  onClick={() => {
-
-                  }}>
+                  onClick={() => navigate("/cadastrar")}>
                     Clique aqui
                   </Link></p>
 

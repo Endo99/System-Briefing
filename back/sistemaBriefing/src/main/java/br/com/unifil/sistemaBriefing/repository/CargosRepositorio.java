@@ -4,10 +4,6 @@ import br.com.unifil.sistemaBriefing.models.Cargos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface CargosRepositorio {
-
-    List<Cargos> listarTodos();
+public interface CargosRepositorio extends JpaRepository<Cargos, Long> {
 }

@@ -1,6 +1,8 @@
 package br.com.unifil.sistemaBriefing.controller;
 
 import br.com.unifil.sistemaBriefing.models.Cargos;
+import br.com.unifil.sistemaBriefing.request.CargoPostResquestBody;
+import br.com.unifil.sistemaBriefing.request.CargoPutResquestBody;
 import br.com.unifil.sistemaBriefing.service.CargosServico;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -22,7 +24,7 @@ public class CargosControle {
 
     // Ler
 
-    @GetMapping(path= "list")
+    @GetMapping(path= "listarCargo")
     public ResponseEntity<List<Cargos>> listar()
     {
         return ResponseEntity.ok(cargosServico.listarTodos());
@@ -31,14 +33,24 @@ public class CargosControle {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cargos> buscarPorId(@PathVariable long id)
     {
-        return ResponseEntity.ok(cargosServico.buscarPorId(id));
+        return ResponseEntity.ok(cargosServico.buscarPorIdCargo(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Cargos> cadastrarCargos(@RequestBody Cargos cargos)
+    @PostMapping(path = "/cadastrarCargo")
+    public ResponseEntity<Cargos> cadastrarCargo(@RequestBody CargoPostResquestBody cargoPostResquestBody)
     {
-        return new ResponseEntity<>(cargosServico.cadastrarCargos(cargos), HttpStatus.CREATED);
+        return new ResponseEntity<>(cargosServico.cadastrarCargo(cargoPostResquestBody), HttpStatus.CREATED);
     }
 
+    @PutMapping(path = "/alterarCargo")
+    public ResponseEntity<Void> alterarCargo(@RequestBody CargoPutResquestBody cargoPutResquestBody) {
+        cargosServico.alterarCadastro(cargoPutResquestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> deletarCargo(@PathVariable long id) {
+        cargosServico.deletarCargo(id);
+        return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

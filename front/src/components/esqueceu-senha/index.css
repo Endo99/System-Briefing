@@ -1,0 +1,25 @@
+body{
+    max-width: 100%;
+    min-width: 5%;
+    max-height: 100%;
+    min-height: 5%;
+    text-align: center;
+    align-items: center;
+    font-family: Domine;
+    background-color: #FBF5F3;
+    letter-spacing: 3px;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.header-esqueceu{
+    margin-top: 20vw;
+    padding-top: 20px;
+}
+
+.header {
+    margin-top: 20vw;
+    padding-top: 20px;
+}

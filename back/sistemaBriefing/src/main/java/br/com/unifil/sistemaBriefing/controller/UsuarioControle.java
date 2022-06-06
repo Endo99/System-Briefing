@@ -2,6 +2,10 @@ package br.com.unifil.sistemaBriefing.controller;
 
 import br.com.unifil.sistemaBriefing.models.Cargos;
 import br.com.unifil.sistemaBriefing.models.Usuario;
+import br.com.unifil.sistemaBriefing.request.CargoPostResquestBody;
+import br.com.unifil.sistemaBriefing.request.CargoPutResquestBody;
+import br.com.unifil.sistemaBriefing.request.UsuarioPostResquestBody;
+import br.com.unifil.sistemaBriefing.request.UsuarioPutResquestBody;
 import br.com.unifil.sistemaBriefing.service.CargosServico;
 import br.com.unifil.sistemaBriefing.service.UsuarioServico;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +27,7 @@ public class UsuarioControle {
 
     // Ler
 
-    @GetMapping(path= "lista-usuario")
+    @GetMapping(path= "listarUsuario")
     public ResponseEntity<List<Usuario>> listar()
     {
         return ResponseEntity.ok(usuarioServico.listarTodos());
@@ -32,12 +36,24 @@ public class UsuarioControle {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable long id)
     {
-        return ResponseEntity.ok(usuarioServico.buscarPorId(id));
+        return ResponseEntity.ok(usuarioServico.buscarPorIdIUsuario(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Usuario> cadastrarCargos(@RequestBody Usuario usuario)
+    @PostMapping(path = "/cadastrarUsuario")
+    public ResponseEntity<Usuario> cadastrarUsuario(@RequestBody UsuarioPostResquestBody usuarioPostResquestBody)
     {
-        return new ResponseEntity<>(usuarioServico.cadastrarUsuario(usuario), HttpStatus.CREATED);
+        return new ResponseEntity<>(usuarioServico.cadastrarUsuario(usuarioPostResquestBody), HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = "/alterarUsuario")
+    public ResponseEntity<Void> alterarCargo(@RequestBody UsuarioPutResquestBody usuarioPutResquestBody) {
+        usuarioServico.alterarUsuario(usuarioPutResquestBody);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> deletarCargo(@PathVariable long id) {
+        usuarioServico.deletarUsuario(id);
+        return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
